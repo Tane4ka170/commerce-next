@@ -133,6 +133,9 @@
     @apply bg-background text-foreground;
   }
   .hoverEffect {
-    @apply transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg;
+    @apply transition-transform duration-300 ease-in-out hover:rotate-1;
+  }
+  button {
+    @apply hover:cursor-pointer;
   }
 }
