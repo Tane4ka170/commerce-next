@@ -23,7 +23,7 @@ const HomeBanner = () => {
         <Image
           src={banner_1}
           alt="hër on-ear bluetooth stereo headphone"
-          className="hidden md:inline-flex w-96"
+          className="hidden md:inline-flex w-60"
         />
       </div>
     </div>
