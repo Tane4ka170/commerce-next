@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" className="font-advent">
         <body className="font-advent antialiased">
           <div className="flex flex-col">
             <Header />
