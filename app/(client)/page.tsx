@@ -5,7 +5,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <Container className="p-10 bg-shop_light_purple">
+    <Container className="p-10">
       <HomeBanner />
       <div className="py-10">
         <ProductGrid />
