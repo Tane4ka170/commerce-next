@@ -20,7 +20,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               .height(600)
               .fit("crop")
               .url()}
-            alt={product.name || "Product Image"}
+            alt={product?.name || "Product Image"}
             fill
             className={`object-contain transition-transform duration-500 w-full h-64 overflow-hidden bg-shop_light_bg ${product?.stock !== 0 ? "group-hover:scale-105" : "opacity-50"}`}
             sizes="(max-width: 768px) 100vw, 33vw"
