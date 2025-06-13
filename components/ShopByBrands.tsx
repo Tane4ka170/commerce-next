@@ -4,6 +4,30 @@ import Link from "next/link";
 import { getAllBrands } from "@/sanity/queries";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import { GitCompareArrows, Headset, ShieldCheck, Truck } from "lucide-react";
+
+const extraData = [
+  {
+    title: "Free Shipping",
+    description: "Enjoy free delivery on orders over $100",
+    icon: <Truck size={45} />,
+  },
+  {
+    title: "Hassle-Free Returns",
+    description: "Easy returns and exchanges on eligible items",
+    icon: <GitCompareArrows size={45} />,
+  },
+  {
+    title: "24/7 Customer Support",
+    description: "Our team is here to help you anytime",
+    icon: <Headset size={45} />,
+  },
+  {
+    title: "Money-Back Guarantee",
+    description: "All products quality-checked for your satisfaction",
+    icon: <ShieldCheck size={45} />,
+  },
+];
 
 const ShopByBrands = async () => {
   const brands = await getAllBrands();
@@ -18,7 +42,7 @@ const ShopByBrands = async () => {
           View all
         </Link>
       </div>
-      <div>
+      <div className="grid grid-cols-2 md:grid-cols-6 lg:grid-cols-8 gap-5">
         {brands?.map((brand) => (
           <Link
             key={brand?._id}
@@ -35,6 +59,24 @@ const ShopByBrands = async () => {
               />
             )}
           </Link>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16 p-2 shadow-sm hover:shadow-lightColor/20 py-5">
+        {extraData?.map((item, index) => (
+          <div
+            key={index}
+            className="flex items-center gap-3 group text-lightColor hover:text-shop_light_green"
+          >
+            <span className="inline-flex scale-100 group-hover:scale-90 hoverEffect">
+              {item?.icon}
+            </span>
+            <div className="text-sm">
+              <p className="text-darkColor/80 font-bold capitalize">
+                {item?.title}
+              </p>
+              <p className="text-lightColor">{item?.description}</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
