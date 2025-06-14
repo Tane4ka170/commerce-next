@@ -53,8 +53,8 @@ const Header = async () => {
             <SignedIn>
               <UserButton />
             </SignedIn>
-            {!user && <SignIn />}
           </ClerkLoaded>
+          {!user && <SignIn />}
         </div>
       </Container>
     </header>
