@@ -1,9 +1,14 @@
 import React from "react";
-import { Title } from "./ui/text";
-import { getLatestBlogs } from "@/sanity/queries";
-import { urlFor } from "@/sanity/lib/image";
-import Image from "next/image";
+
+import dayjs from "dayjs";
+import { Calendar } from "lucide-react";
+
 import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import { getLatestBlogs } from "@/sanity/queries";
+
+import { Title } from "./ui/text";
 
 const LatestBlog = async () => {
   const blogs = await getLatestBlogs();
@@ -24,10 +29,31 @@ const LatestBlog = async () => {
                 />
               </Link>
             )}
-            <div>
-              <div>
-                <div>{blog?.blogcategories?.map()}</div>
+            <div className="bg-shop_light_bg p-5">
+              <div className="text-xs flex items-center gap-5">
+                <div className="flex items-center relative group cursor-pointer">
+                  {blog?.blogcategories?.map((item, index) => (
+                    <p
+                      key={index}
+                      className="font-semibold text-shop_dark_blue tracking-wider"
+                    >
+                      {item?.title}
+                    </p>
+                  ))}
+                  <span className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-[2px] group-hover:bg-shop_dark_blue hover:cursor-pointer hoverEffect"></span>
+                </div>
+                <p className="flex items-center gap-1 text-lightColor relative group hover:cursor-pointer hover:text-shop_dark_blue hoverEffect">
+                  <Calendar size={15} />
+                  {dayjs(blog.publishedAt).format("DD MMM YYYY")}
+                  <span className="absolute left-0 -bottom-1.5 bg-lightColor/30 inline-block w-full h-[2px] group-hover:bg-shop_dark_blue hover:cursor-pointer hoverEffect" />
+                </p>
               </div>
+              <Link
+                href={`/blog/${blog?.slug?.current}}`}
+                className="text-base font-semibold tracking-wide mt-5 line-clamp-2"
+              >
+                {blog?.title}
+              </Link>
             </div>
           </div>
         ))}
