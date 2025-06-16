@@ -57,4 +57,25 @@ const getDealProducts = async () => {
   }
 };
 
-export { getCategories, getAllBrands, getLatestBlogs, getDealProducts };
+const getProductBySlug = async (slug: string) => {
+  try {
+    const product = await sanityFetch({
+      query: PRODUCT_BY_SLUG_QUERY,
+      params: {
+        slug,
+      },
+    });
+    return product?.data || null;
+  } catch (error) {
+    console.error("Error fetching product by ID:", error);
+    return null;
+  }
+};
+
+export {
+  getCategories,
+  getAllBrands,
+  getLatestBlogs,
+  getDealProducts,
+  getProductBySlug,
+};
