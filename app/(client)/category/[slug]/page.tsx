@@ -1,6 +1,9 @@
-import { Title } from "@/components/ui/text";
-import { getCategories } from "@/sanity/queries";
 import React from "react";
+
+import { Title } from "@/components/ui/text";
+import Container from "@/components/Container";
+import { getCategories } from "@/sanity/queries";
+import CategoryProducts from "@/components/CategoryProducts";
 
 const CategoryPage = async ({
   params,
@@ -18,6 +21,7 @@ const CategoryPage = async ({
             {slug && slug}
           </span>
         </Title>
+        <CategoryProducts categories={categories} slug={slug} />
       </Container>
     </div>
   );
