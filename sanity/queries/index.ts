@@ -1,5 +1,10 @@
 import { sanityFetch } from "../lib/live";
-import { BRANDS_QUERY, DEAL_PRODUCTS, LATEST_BLOG_QUERY } from "./query";
+import {
+  BRANDS_QUERY,
+  DEAL_PRODUCTS,
+  LATEST_BLOG_QUERY,
+  PRODUCT_BY_SLUG_QUERY,
+} from "./query";
 
 const getCategories = async (quantity?: number) => {
   try {
