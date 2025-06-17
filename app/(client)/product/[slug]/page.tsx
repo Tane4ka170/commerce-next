@@ -13,8 +13,6 @@ const SingleProductPage = async ({
   const product = await getProductBySlug(slug);
   const isStock = product?.stock > 0;
 
-  console.log(product, "product");
-
   return (
     <Container className="flex flex-col md:flex-row gap-10 pb-10">
       {product?.images && (
