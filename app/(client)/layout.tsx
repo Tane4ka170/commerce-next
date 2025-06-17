@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <div className="flex flex-col">
+      <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-1">{children}</main>
 
