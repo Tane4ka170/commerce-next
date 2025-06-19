@@ -5,9 +5,12 @@ import { StarIcon } from "lucide-react";
 import Container from "@/components/Container";
 import ImageView from "@/components/ImageView";
 import PriceView from "@/components/PriceView";
+import { FaCodeCompare } from "react-icons/fa6";
 import { getProductBySlug } from "@/sanity/queries";
 import FavoriteButton from "@/components/FavoriteButton";
 import AddToCartButton from "@/components/AddToCartButton";
+import ProductCharacteristics from "@/components/ProductCharacteristics";
+import { CiCircleQuestion, CiDeliveryTruck, CiShare1 } from "react-icons/ci";
 
 const SingleProductPage = async ({
   params,
@@ -52,9 +55,28 @@ const SingleProductPage = async ({
             {(product?.stock as number) > 0 ? "In Stock" : "Out of Stock"}
           </p>
         </div>
-        <div className="flex items-center gap-2.5 lg:gap-4">
+        <div className="flex items-center gap-2.5 lg:gap-3">
           <AddToCartButton product={product} />
           <FavoriteButton showProduct={true} product={product} />
+        </div>
+        <ProductCharacteristics product={product} />
+        <div className="flex flex-wrap items-center justify-between gap-2.5 border-b border-b-gray-50 py-5 -mt-2">
+          <div className="flex items-center gap-2 text-sm text-black hover:text-red-900 hoverEffect">
+            <FaCodeCompare className="text-lg" />
+            <p>Check colors</p>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-black hover:text-red-900 hoverEffect">
+            <CiCircleQuestion className="text-lg" />
+            <p>Inquire</p>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-black hover:text-red-900 hoverEffect">
+            <CiDeliveryTruck className="text-lg" />
+            <p>Shipping & Returns</p>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-black hover:text-red-900 hoverEffect">
+            <CiShare1 className="text-lg" />
+            <p>Share with friends</p>
+          </div>
         </div>
       </div>
     </Container>
