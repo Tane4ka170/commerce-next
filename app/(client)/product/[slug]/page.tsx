@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StarIcon } from "lucide-react";
+import { CornerDownLeft, StarIcon, Truck } from "lucide-react";
 
 import Container from "@/components/Container";
 import ImageView from "@/components/ImageView";
@@ -76,6 +76,29 @@ const SingleProductPage = async ({
           <div className="flex items-center gap-2 text-sm text-black hover:text-red-900 hoverEffect">
             <CiShare1 className="text-lg" />
             <p>Share with friends</p>
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <div className="border border-lightColor/80 border-b-0 p-3 flex items-center gap-2.5">
+            <Truck size={30} className="text-shop_orange" />
+            <div>
+              <p className="text-base font-semibold text-black">
+                Free Delivery
+              </p>
+              <p className="text-sm text-gray-400 underline underline-offset-2">
+                Enter your postal code to check availability
+              </p>
+            </div>
+          </div>
+          <div className="border border-lightColor/80 p-3 flex items-center gap-2.5">
+            <CornerDownLeft size={30} className="text-shop_orange" />
+            <div>
+              <p className="text-base font-semibold text-black">Returns</p>
+              <p className="text-sm text-gray-400 ">
+                Enjoy free returns within 30 days.{" "}
+                <span className="underline underline-offset-2">Learn more</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
