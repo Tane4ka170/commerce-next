@@ -605,6 +605,11 @@ export type PRODUCT_BY_SLUG_QUERYResult = {
   variant?: "appliances" | "gadget" | "others" | "refrigerators";
   isFeatured?: boolean;
 } | null;
+// Variable: BRAND_QUERY
+// Query: *[_type == "product" && slug.current == $slug]{  "brandName": brand->title  }
+export type BRAND_QUERYResult = Array<{
+  brandName: string | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -614,5 +619,6 @@ declare module "@sanity/client" {
     " *[_type == 'blog' && isLatest == true]|order(name asc){\n        ...,\n        blogcategories[]->{\n        title\n      }\n      }": LATEST_BLOG_QUERYResult;
     "*[_type == 'product' && status == 'hot'] | order(name asc){\n    ...,\"categories\": categories[]->title\n  }": DEAL_PRODUCTSResult;
     "*[_type == \"product\" && slug.current == $slug] | order(name asc) [0]": PRODUCT_BY_SLUG_QUERYResult;
+    "*[_type == \"product\" && slug.current == $slug]{\n  \"brandName\": brand->title\n  }": BRAND_QUERYResult;
   }
 }
