@@ -1,17 +1,19 @@
 "use client";
 
-import { BRANDS_QUERYResult, Category, Product } from "@/sanity.types";
 import React, { useState } from "react";
-import Container from "./Container";
 
-import CategoryList from "./shop/CategoryList";
-// import BrandList from "./shop/BrandList";
-// import PriceList from "./shop/PriceList";
-import { useSearchParams } from "next/navigation";
 import { Loader } from "lucide-react";
-import ProductCard from "./ProductCard";
-import NoProductAvailable from "./NoProductAvailable";
+
+import { useSearchParams } from "next/navigation";
+import { BRANDS_QUERYResult, Category, Product } from "@/sanity.types";
+
 import { Title } from "./ui/text";
+import Container from "./Container";
+import ProductCard from "./ProductCard";
+import BrandList from "./shop/BrandList";
+import PriceList from "./shop/PriceList";
+import CategoryList from "./shop/CategoryList";
+import NoProductAvailable from "./NoProductAvailable";
 
 interface Props {
   categories: Category[];
@@ -51,7 +53,7 @@ const Shop = ({ categories, brands }: Props) => {
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
             />
-            {/* <BrandList
+            <BrandList
               brands={brands}
               setSelectedBrand={setSelectedBrand}
               selectedBrand={selectedBrand}
@@ -59,7 +61,7 @@ const Shop = ({ categories, brands }: Props) => {
             <PriceList
               setSelectedPrice={setSelectedPrice}
               selectedPrice={selectedPrice}
-            /> */}
+            />
           </div>
           <div className="flex-1 pt-5">
             <div className="h-[calc(100vh-160px)] overflow-y-auto pr-2 scrollbar-hide">
