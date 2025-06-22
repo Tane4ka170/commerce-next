@@ -7,17 +7,26 @@ import { cn } from "@/lib/utils";
 import { Product } from "@/sanity.types";
 
 import { Button } from "./ui/button";
+import useStore from "@/store";
+import toast from "react-hot-toast";
 
 interface Props {
-  product: Product | null | undefined;
+  product: Product;
   className?: string;
 }
 
 const AddToCartButton = ({ product, className }: Props) => {
+  const { addItem, getItemCount } = useStore();
+  const itemCount = getItemCount(product?._id);
   const isOutOfStock = product?.stock === 0;
 
   const handleAddToCart = () => {
-    window.alert("Added to cart!");
+    if ((product?.stock as number) > itemCount) {
+      addItem(product);
+      toast.success(`${product?.name?.substring(0, 12)}... has been added!`);
+    } else {
+      toast.error("You can't add more than the available stock");
+    }
   };
   return (
     <div>
