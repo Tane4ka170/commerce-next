@@ -9,6 +9,8 @@ import { Product } from "@/sanity.types";
 import { Button } from "./ui/button";
 import useStore from "@/store";
 import toast from "react-hot-toast";
+import PriceFormatter from "./PriceFormatter";
+import QuantityButtons from "./QuantityButtons";
 
 interface Props {
   product: Product;
@@ -30,16 +32,31 @@ const AddToCartButton = ({ product, className }: Props) => {
   };
   return (
     <div>
-      <Button
-        disabled={isOutOfStock}
-        onClick={handleAddToCart}
-        className={cn(
-          "w-full bg-shop_dark_blue/80 text-shop_light_bg shadow-none border border-shop_dark_blue/80 font-semibold tracking-wide hover:text-white hover:bg-shop_dark_blue hover:border-shop_dark_blue hoverEffect",
-          className
-        )}
-      >
-        <ShoppingBag /> {isOutOfStock ? "Unavailable" : "Buy Now"}
-      </Button>
+      {itemCount ? (
+        <div className="text-sm w-full">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-darkColor/65">Quantity</span>
+            <QuantityButtons product={product} />
+          </div>
+          <div className="flex items-center justify-between border-t pt-1">
+            <span className="text-xs font-semibold">Subtotal</span>
+            <PriceFormatter
+              amount={product?.price ? product?.price * itemCount : 0}
+            />
+          </div>
+        </div>
+      ) : (
+        <Button
+          disabled={isOutOfStock}
+          onClick={handleAddToCart}
+          className={cn(
+            "w-full bg-shop_dark_blue/80 text-shop_light_bg shadow-none border border-shop_dark_blue/80 font-semibold tracking-wide hover:text-white hover:bg-shop_dark_blue hover:border-shop_dark_blue hoverEffect",
+            className
+          )}
+        >
+          <ShoppingBag /> {isOutOfStock ? "Unavailable" : "Buy Now"}
+        </Button>
+      )}
     </div>
   );
 };
