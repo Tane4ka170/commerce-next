@@ -11,6 +11,7 @@ import FavoriteButton from "@/components/FavoriteButton";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductCharacteristics from "@/components/ProductCharacteristics";
 import { CiCircleQuestion, CiDeliveryTruck, CiShare1 } from "react-icons/ci";
+import { notFound } from "next/navigation";
 
 const SingleProductPage = async ({
   params,
@@ -19,6 +20,9 @@ const SingleProductPage = async ({
 }) => {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
+  if (!product) {
+    return notFound();
+  }
 
   return (
     <Container className="flex flex-col md:flex-row gap-10 pb-10">
