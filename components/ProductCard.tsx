@@ -1,13 +1,16 @@
+import React from "react";
+
+import { Flame, StarIcon } from "lucide-react";
+
+import Link from "next/link";
+import Image from "next/image";
 import { Product } from "@/sanity.types";
 import { urlFor } from "@/sanity/lib/image";
-import { Flame, StarIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import AddToWishlistButton from "./AddToWishlistButton";
+
 import { Title } from "./ui/text";
 import PriceView from "./PriceView";
 import AddToCartButton from "./AddToCartButton";
+import AddToWishlistButton from "./AddToWishlistButton";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
