@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 
+import toast from "react-hot-toast";
 import { Heart } from "lucide-react";
 
 import Link from "next/link";
-import { Product } from "@/sanity.types";
 import useStore from "@/store";
-import toast from "react-hot-toast";
+import { Product } from "@/sanity.types";
 
 const FavoriteButton = ({
   showProduct = false,
