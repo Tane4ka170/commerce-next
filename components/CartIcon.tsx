@@ -1,9 +1,11 @@
 "use client";
 
-import useStore from "@/store";
-import { ShoppingBag } from "lucide-react";
-import Link from "next/link";
 import React from "react";
+
+import { ShoppingBag } from "lucide-react";
+
+import Link from "next/link";
+import useStore from "@/store";
 
 const CartIcon = () => {
   const { items } = useStore();
