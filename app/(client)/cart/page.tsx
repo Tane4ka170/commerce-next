@@ -1,11 +1,13 @@
 "use client";
 
-import Container from "@/components/Container";
-import NoAccess from "@/components/NoAccess";
-import { Address } from "@/sanity.types";
-import useStore from "@/store";
-import { useAuth, useUser } from "@clerk/nextjs";
 import { useState } from "react";
+
+import useStore from "@/store";
+import { Address } from "@/sanity.types";
+import NoAccess from "@/components/NoAccess";
+import Container from "@/components/Container";
+import EmptyCart from "@/components/EmptyCart";
+import { useAuth, useUser } from "@clerk/nextjs";
 
 const CartPage = () => {
   const {
@@ -25,7 +27,13 @@ const CartPage = () => {
     <div className="bg-gray-700 pb-52 md:pb-10">
       {isSignedIn ? (
         <Container>
-          <p>cart page</p>
+          {groupedItems.length > 0 ? (
+            <>
+              <p>Products</p>
+            </>
+          ) : (
+            <EmptyCart />
+          )}
         </Container>
       ) : (
         <NoAccess></NoAccess>
