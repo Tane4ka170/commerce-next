@@ -2,6 +2,7 @@ import React from "react";
 
 import { CornerDownLeft, StarIcon, Truck } from "lucide-react";
 
+import { notFound } from "next/navigation";
 import Container from "@/components/Container";
 import ImageView from "@/components/ImageView";
 import PriceView from "@/components/PriceView";
@@ -11,7 +12,6 @@ import FavoriteButton from "@/components/FavoriteButton";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductCharacteristics from "@/components/ProductCharacteristics";
 import { CiCircleQuestion, CiDeliveryTruck, CiShare1 } from "react-icons/ci";
-import { notFound } from "next/navigation";
 
 const SingleProductPage = async ({
   params,
