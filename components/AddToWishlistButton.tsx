@@ -1,10 +1,11 @@
+import React, { useEffect, useState } from "react";
+
+import toast from "react-hot-toast";
+import { Heart } from "lucide-react";
+
+import useStore from "@/store";
 import { cn } from "@/lib/utils";
 import { Product } from "@/sanity.types";
-import useStore from "@/store";
-import { Heart } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-
 const AddToWishlistButton = ({
   product,
   className,
