@@ -1,20 +1,18 @@
 import React from "react";
-import Container from "./Container";
-import Logo from "./Logo";
-import HeaderMenu from "./HeaderMenu";
-import SearchBar from "./SearchBar";
-import CartIcon from "./CartIcon";
-import FavoriteButton from "./FavoriteButton";
-import SignIn from "./SignIn";
-import MobileMenu from "./MobileMenu";
-import {
-  // auth,
-  currentUser,
-} from "@clerk/nextjs/server";
-import { ClerkLoaded, SignedIn, UserButton } from "@clerk/nextjs";
-import Link from "next/link";
+
 import { Logs } from "lucide-react";
-// import { getMyOrders } from "@/sanity/queries";
+
+import Link from "next/link";
+import { ClerkLoaded, SignedIn, UserButton } from "@clerk/nextjs";
+
+import Logo from "./Logo";
+import SignIn from "./SignIn";
+import CartIcon from "./CartIcon";
+import Container from "./Container";
+import SearchBar from "./SearchBar";
+import HeaderMenu from "./HeaderMenu";
+import MobileMenu from "./MobileMenu";
+import FavoriteButton from "./FavoriteButton";
 
 const Header = async () => {
   const user = await currentUser();
