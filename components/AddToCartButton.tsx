@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 
+import toast from "react-hot-toast";
 import { ShoppingBag } from "lucide-react";
 
+import useStore from "@/store";
 import { cn } from "@/lib/utils";
 import { Product } from "@/sanity.types";
 
 import { Button } from "./ui/button";
-import useStore from "@/store";
-import toast from "react-hot-toast";
 import PriceFormatter from "./PriceFormatter";
 import QuantityButtons from "./QuantityButtons";
 
