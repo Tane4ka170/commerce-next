@@ -3,6 +3,7 @@ import React from "react";
 import { Logs } from "lucide-react";
 
 import Link from "next/link";
+import { currentUser } from "@clerk/nextjs/server";
 import { ClerkLoaded, SignedIn, UserButton } from "@clerk/nextjs";
 
 import Logo from "./Logo";
