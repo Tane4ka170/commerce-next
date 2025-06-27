@@ -44,6 +44,24 @@ const CartPage = () => {
   const { user } = useUser();
   const [addresses, setAddresses] = useState<Address[] | null>(null);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
+
+  const handleResetCart = () => {
+    const confirmed = window.confirm("Do you really want to clear your cart?");
+    if (confirmed) {
+      resetCart();
+      toast.success("Your cart has been cleared!");
+    }
+  };
+
+  const fetchAddresses = async () => {
+    setLoading(true);
+    try {
+    } catch (error) {
+      console.log("Failed to load addresses:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="bg-gray-100 pb-52 md:pb-10">
       {isSignedIn ? (
@@ -118,7 +136,7 @@ const CartPage = () => {
                                         onClick={() => {
                                           deleteCartProduct(product?._id);
                                           toast.success(
-                                            "Product deleted successfully!"
+                                            "The product has been removed successfully!"
                                           );
                                         }}
                                         className="w-4 h-4 md:w-5 md:h-5 mr-1 text-gray-700 hover:text-red-400 hoverEffect"
@@ -182,7 +200,7 @@ const CartPage = () => {
                           disabled={loading}
                           onClick={handleCheckout}
                         >
-                          {loading ? "Please wait..." : "Proceed to Checkout"}
+                          {loading ? "Processing..." : "Go to Checkout"}
                         </Button>
                       </div>
                     </div>
