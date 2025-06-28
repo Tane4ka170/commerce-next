@@ -56,12 +56,47 @@ const CartPage = () => {
   const fetchAddresses = async () => {
     setLoading(true);
     try {
+      const query = `*[_type=="address"] | order(publishedAt desc)`;
+      const data = await client.fetch(query);
+      setAddresses(data);
+      const defaultAddress = data.find((addr: Address) => addr.default);
+      if (defaultAddress) {
+        setSelectedAddress(defaultAddress);
+      } else if (data.length > 0) {
+        setSelectedAddress(data[0]);
+      }
     } catch (error) {
       console.log("Failed to load addresses:", error);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchAddresses();
+  }, []);
+
+  const handleCheckout = async () => {
+    setLoading(true);
+    try {
+      const metadata: Metadata = {
+        orderNumber: crypto.randomUUID(),
+        customerName: user?.fullName ?? "Unknown",
+        customerEmail: user?.emailAddresses[0]?.emailAddress ?? "Unknown",
+        clerkUserId: user?.id,
+        address: selectedAddress,
+      };
+      const checkoutUrl = await createCheckoutSession(groupedItems, metadata);
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      }
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-gray-100 pb-52 md:pb-10">
       {isSignedIn ? (
