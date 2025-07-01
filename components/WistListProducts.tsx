@@ -14,6 +14,7 @@ import Container from "./Container";
 import { Button } from "./ui/button";
 import PriceFormatter from "./PriceFormatter";
 import AddToCartButton from "./AddToCartButton";
+
 const WistListProducts = () => {
   const { favoriteProduct, removeFromFavorite, resetFavorite } = useStore();
   const [visibleProducts, setVisibleProducts] = useState(7);
@@ -21,6 +22,17 @@ const WistListProducts = () => {
   const loadMore = () => {
     setVisibleProducts((prev) => Math.min(prev + 5, favoriteProduct.length));
   };
+
+  const handleResetWishlist = () => {
+    const confirmReset = window.confirm(
+      "Are you sure you want to reset your wishlist?"
+    );
+    if (confirmReset) {
+      resetFavorite();
+      toast.success("Wishlist reset successfully");
+    }
+  };
+
   return (
     <Container>
       {favoriteProduct?.length > 0 ? (
@@ -28,7 +40,7 @@ const WistListProducts = () => {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead className="border-b">
-                <tr className="bg-black/25">
+                <tr className="bg-black/35">
                   <th className="p-2 text-left">Image</th>
                   <th className="p-2 text-left hidden md:table-cell">
                     Category
@@ -48,12 +60,10 @@ const WistListProducts = () => {
                         <X
                           onClick={() => {
                             removeFromFavorite(product?._id);
-                            toast.success(
-                              "Item successfully removed from your wishlist"
-                            );
+                            toast.success("Product removed from wishlist");
                           }}
                           size={18}
-                          className="hover:text-red-600 hover:cursor-pointer hoverEffect"
+                          className="hover:text-red-300 hover:cursor-pointer hoverEffect"
                         />
                         {product?.images && (
                           <Link
@@ -84,8 +94,8 @@ const WistListProducts = () => {
                       <td
                         className={`p-2 w-24 ${
                           (product?.stock as number) > 0
-                            ? "text-green-300"
-                            : "text-red-50"
+                            ? "text-green-50"
+                            : "text-red-700"
                         } font-medium text-sm hidden md:table-cell`}
                       >
                         {(product?.stock as number) > 0
@@ -103,6 +113,35 @@ const WistListProducts = () => {
               </tbody>
             </table>
           </div>
+          <div className="flex items-center gap-2">
+            {visibleProducts < favoriteProduct?.length && (
+              <div className="my-5">
+                <Button variant="outline" onClick={loadMore}>
+                  Load More
+                </Button>
+              </div>
+            )}
+            {visibleProducts > 10 && (
+              <div className="my-5">
+                <Button
+                  onClick={() => setVisibleProducts(10)}
+                  variant="outline"
+                >
+                  Load Less
+                </Button>
+              </div>
+            )}
+          </div>
+          {favoriteProduct?.length > 0 && (
+            <Button
+              onClick={handleResetWishlist}
+              className="mb-5 font-semibold"
+              variant="destructive"
+              size="lg"
+            >
+              Reset Wishlist
+            </Button>
+          )}
         </>
       ) : (
         <div className="flex min-h-[400px] flex-col items-center justify-center space-y-6 px-4 text-center">
