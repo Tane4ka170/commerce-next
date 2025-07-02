@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import toast from "react-hot-toast";
 import { ShoppingBag, Trash } from "lucide-react";
@@ -24,15 +24,15 @@ import AddToWishlistButton from "@/components/AddToWishlistButton";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  createCheckoutSession,
+  Metadata,
+} from "@/actions/createCheckoutSession";
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  createCheckoutSession,
-  Metadata,
-} from "@/actions/createCheckoutSession";
 
 const CartPage = () => {
   const {
