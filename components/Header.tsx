@@ -50,6 +50,9 @@ const Header = async () => {
 
           <ClerkLoaded>
             <SignedIn>
+              <Link href={"/orders"}>
+                <Logs />
+              </Link>
               <UserButton />
             </SignedIn>
           </ClerkLoaded>
