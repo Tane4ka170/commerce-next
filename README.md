@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Shopcart – Everything You Need
 
-## Getting Started
+Welcome to Shopcart, your ✨ all-in-one ✨ shopping platform built with 💙 Next.js 15, 🔥 Tailwind CSS, and 🛠️ modern tooling.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🧑‍💼 Auth powered by Clerk
+- 🖼️ Dynamic content from Sanity.io
+- 🎯 Sleek, responsive design with Tailwind CSS
+- 🧱 Component-first architecture (Header, Footer, Banners, Grids, etc.)
+- 💡 Toast notifications via `react-hot-toast`
+- 💬 Blog integration & brand showcase
+- 🛍️ Product categories and grid view
+- 🌐 SSR-ready and SEO-friendly
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Framework:** Next.js 15 + App Router + TurboPack
+* **Styling:** Tailwind CSS + tw-animate-css
+* **CMS:** Sanity
+* **UI:** Radix UI + Lucide Icons
+* **State Management:** Zustand
+* **Utilities:** clsx, dayjs, swr
+* **Payments:** Stripe (💸)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Scripts
 
-## Learn More
+1. Clone the repository:
+   ```bash
+   npm run dev         # start dev server 🚧
+   npm run build       # build for production 🏗️
+   npm run start       # start production server 🚀
+   npm run lint        # lint your code 🧹
+   npm run typegen     # generate types from Sanity 📋
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## 💡 Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed to provide a clean and scalable foundation for modern online stores.
+Easy to extend, customize, and optimize for a wide range of e-commerce needs. 🎯
