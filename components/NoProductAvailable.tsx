@@ -45,7 +45,7 @@ const NoProductAvailable = ({
         className="flex items-center space-x-2 text-shop_dark_green"
       >
         <Loader2 className="w-5 h-5 animate-spin" />
-        <span>We're updating our stock</span>
+        <span>We&apos;re updating our stock</span>
       </motion.div>
 
       <motion.p
