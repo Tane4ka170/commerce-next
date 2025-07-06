@@ -1,7 +1,6 @@
 import Container from "@/components/Container";
 import { Title } from "@/components/ui/text";
-
-import { Blog, SINGLE_BLOG_QUERYResult } from "@/sanity.types";
+import { SINGLE_BLOG_QUERYResult } from "@/sanity.types";
 import { urlFor } from "@/sanity/lib/image";
 import {
   getBlogCategories,
@@ -14,7 +13,6 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import React from "react";
 
 const SingleBlogPage = async ({
   params,
@@ -22,8 +20,12 @@ const SingleBlogPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
-  const blog: SINGLE_BLOG_QUERYResult = await getSingleBlog(slug);
-  if (!blog) return notFound();
+  const blogResult = await getSingleBlog(slug);
+  if (!blogResult || Array.isArray(blogResult) || !blogResult._id) {
+    return notFound();
+  }
+
+  const blog: SINGLE_BLOG_QUERYResult = blogResult;
 
   return (
     <div className="py-10">
@@ -42,7 +44,10 @@ const SingleBlogPage = async ({
             <div className="text-xs flex items-center gap-5 my-7">
               <div className="flex items-center relative group cursor-pointer">
                 {blog?.blogcategories?.map(
-                  (item: { title: string }, index: number) => (
+                  (
+                    item: { title: string | null; slug: string | null },
+                    index: number
+                  ) => (
                     <p
                       key={index}
                       className="font-semibold text-shop_dark_green tracking-wider"
@@ -198,43 +203,57 @@ const BlogLeft = async ({ slug }: { slug: string }) => {
 
   return (
     <div>
+      {/* Categories */}
       <div className="border border-lightColor p-5 rounded-md">
         <Title className="text-base">Blog Categories</Title>
         <div className="space-y-2 mt-2">
-          {categories?.map(({ blogcategories }, index) => (
-            <div
-              key={index}
-              className="text-lightColor flex items-center justify-between text-sm font-medium"
-            >
-              <p>{blogcategories[0]?.title}</p>
-              <p className="text-darkColor font-semibold">{`(1)`}</p>
-            </div>
-          ))}
+          {categories?.map((category, index) => {
+            const blogCatArray = category?.blogcategories;
+            const title = blogCatArray?.[0]?.title ?? "Untitled";
+
+            return blogCatArray && blogCatArray.length > 0 ? (
+              <div
+                key={index}
+                className="text-lightColor flex items-center justify-between text-sm font-medium"
+              >
+                <p>{title}</p>
+                <p className="text-darkColor font-semibold">{`(1)`}</p>
+              </div>
+            ) : null;
+          })}
         </div>
       </div>
+
+      {/* Latest Blogs */}
       <div className="border border-lightColor p-5 rounded-md mt-10">
         <Title className="text-base">Latest Blogs</Title>
         <div className="space-y-4 mt-4">
-          {blogs?.map((blog: Blog, index: number) => (
-            <Link
-              href={`/blog/${blog?.slug?.current}`}
-              key={index}
-              className="flex items-center gap-2 group"
-            >
-              {blog?.mainImage && (
-                <Image
-                  src={urlFor(blog?.mainImage).url()}
-                  alt="blogImage"
-                  width={100}
-                  height={100}
-                  className="w-16 h-16 rounded-full object-cover border-[1px] border-shop_dark_green/10 group-hover:border-shop_dark_green hoverEffect"
-                />
-              )}
-              <p className="line-clamp-2 text-sm text-lightColor group-hover:text-shop_dark_green hoverEffect">
-                {blog?.title}
-              </p>
-            </Link>
-          ))}
+          {blogs?.map((blog, index) => {
+            const blogTitle = blog?.title ?? "Untitled";
+            const blogSlug = blog?.slug?.current ?? "#";
+            const blogImage = blog?.mainImage;
+
+            return (
+              <Link
+                href={`/blog/${blogSlug}`}
+                key={index}
+                className="flex items-center gap-2 group"
+              >
+                {blogImage && (
+                  <Image
+                    src={urlFor(blogImage).url()}
+                    alt="blogImage"
+                    width={100}
+                    height={100}
+                    className="w-16 h-16 rounded-full object-cover border-[1px] border-shop_dark_green/10 group-hover:border-shop_dark_green hoverEffect"
+                  />
+                )}
+                <p className="line-clamp-2 text-sm text-lightColor group-hover:text-shop_dark_green hoverEffect">
+                  {blogTitle}
+                </p>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
