@@ -1,6 +1,7 @@
 import Container from "@/components/Container";
-import Title from "@/components/Title";
-import { SINGLE_BLOG_QUERYResult } from "@/sanity.types";
+import { Title } from "@/components/ui/text";
+
+import { Blog, SINGLE_BLOG_QUERYResult } from "@/sanity.types";
 import { urlFor } from "@/sanity/lib/image";
 import {
   getBlogCategories,
